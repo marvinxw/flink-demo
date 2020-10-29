@@ -17,3 +17,4 @@ org.apache.flink.streaming.connectors.kafka.KafkaTableSourceSinkFactory
 org.apache.flink.table.sources.CsvBatchTableSourceFactory
 org.apache.flink.table.sources.CsvAppendTableSourceFactory
 org.apache.flink.api.java.io.jdbc.JDBCTableSourceSinkFactory
+# org.apache.flink.table.factories.TableSourceFactory
