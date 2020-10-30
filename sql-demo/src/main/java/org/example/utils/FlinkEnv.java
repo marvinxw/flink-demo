@@ -22,7 +22,7 @@ public class FlinkEnv {
 
         if (true) {
             env.setStateBackend(new FsStateBackend("file:///tmp/flink/checkpoints", false));
-            env.enableCheckpointing(Time.seconds(60).toMilliseconds());
+            env.enableCheckpointing(Time.seconds(interval).toMilliseconds());
             return env;
         }
 

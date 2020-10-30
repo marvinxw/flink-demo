@@ -10,7 +10,7 @@ public class Sql2Kafka extends FlinkTblEnvAbstract {
 
     public static void main(String[] args) throws Exception {
 
-        StreamTableEnvironment tbl = tblEnv();
+        StreamTableEnvironment tbl = tblEnv(3L);
 
         String filesysSource = getFileContent("sql/filesys/file_source.sql");
         System.out.println("filesysSource = " + filesysSource);

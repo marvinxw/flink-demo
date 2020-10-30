@@ -7,8 +7,8 @@ import org.apache.flink.table.api.java.StreamTableEnvironment;
 
 public abstract class FlinkTblEnvAbstract {
 
-    public static StreamTableEnvironment tblEnv() {
-        StreamExecutionEnvironment env = FlinkEnv.initEnv(60L);
+    public static StreamTableEnvironment tblEnv(Long interval) {
+        StreamExecutionEnvironment env = FlinkEnv.initEnv(interval);
 
         EnvironmentSettings settings = EnvironmentSettings.newInstance().useBlinkPlanner().inStreamingMode().build();
         StreamTableEnvironment tableEnv = StreamTableEnvironment.create(env, settings);

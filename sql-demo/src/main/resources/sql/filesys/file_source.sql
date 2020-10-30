@@ -1,4 +1,5 @@
 -- https://ci.apache.org/projects/flink/flink-docs-stable/dev/table/connect.html
+-- https://ci.apache.org/projects/flink/flink-docs-stable/dev/table/connect.html#update-modes
 
 CREATE TABLE local_filesys (
   id INT,
