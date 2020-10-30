@@ -1,21 +1,30 @@
 package org.example.task;
 
-import org.apache.flink.api.common.time.Time;
-import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
-import org.apache.flink.table.api.EnvironmentSettings;
 import org.apache.flink.table.api.java.StreamTableEnvironment;
-import org.example.utils.FlinkEnv;
+import org.example.utils.FlinkTblEnvAbstract;
 
-public class Sql2Mysql {
+import static org.example.utils.FileContent.getFileContent;
 
-    public static void main(String[] args) {
+public class Sql2Mysql extends FlinkTblEnvAbstract {
 
-        StreamExecutionEnvironment env = FlinkEnv.initEnv(60L);
+    public static void main(String[] args) throws Exception {
 
-        EnvironmentSettings settings = EnvironmentSettings.newInstance().useBlinkPlanner().inStreamingMode().build();
-        StreamTableEnvironment tableEnv = StreamTableEnvironment.create(env, settings);
-        tableEnv.getConfig().setIdleStateRetentionTime(Time.minutes(30), Time.minutes(60));
+        StreamTableEnvironment tbl = tblEnv();
 
+        String kafkaSource = getFileContent("sql/kafka/kafka_source.sql");
+        System.out.println("kafkaSource = " + kafkaSource);
+
+        String mysqlSink = getFileContent("sql/mysql/mysql_sink.sql");
+        System.out.println("mysqlSink = " + mysqlSink);
+
+        String kafka2MySQL = getFileContent("sql/action/kafka_to_mysql.sql");
+        System.out.println("kafka2MySQL = " + kafka2MySQL);
+
+        tbl.sqlUpdate(kafkaSource);
+        tbl.sqlUpdate(mysqlSink);
+        tbl.sqlUpdate(kafka2MySQL);
+
+        tbl.execute("local-Sql2Mysql");
     }
 }
 

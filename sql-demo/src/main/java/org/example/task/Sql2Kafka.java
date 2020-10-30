@@ -1,12 +1,12 @@
 package org.example.task;
 
 import org.apache.flink.table.api.java.StreamTableEnvironment;
-import org.example.utils.EnvAbstract;
+import org.example.utils.FlinkTblEnvAbstract;
 
 import static org.example.utils.FileContent.getFileContent;
 
 
-public class Sql2Kafka extends EnvAbstract {
+public class Sql2Kafka extends FlinkTblEnvAbstract {
 
     public static void main(String[] args) throws Exception {
 
